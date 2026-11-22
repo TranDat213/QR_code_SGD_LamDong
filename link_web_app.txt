@@ -1,0 +1,2 @@
+Trang form (dùng cho QR): https://heartfelt-brioche-d58fc5.netlify.app/
+Apps Script (API, dự phòng): https://script.google.com/macros/s/AKfycbzH7jTeYHhtDJCiGjEoCvJqWdOSqYltdBaUzQjPRaleqn16mPvBfhxvFoJks5tiXJld/exec

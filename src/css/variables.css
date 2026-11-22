@@ -1,0 +1,39 @@
+/**
+ * variables.css
+ * ─────────────────────────────────────────────
+ * Design tokens (CSS Custom Properties)
+ * Chỉnh màu sắc, kích thước… tại đây để áp dụng toàn ứng dụng.
+ * ─────────────────────────────────────────────
+ */
+
+:root {
+  /* ── Màu chủ đạo ── */
+  --color-navy:   #0b3a75;
+  --color-primary:        #1557c0;
+  --color-primary-dark:   #0e4499;
+  --color-primary-light:  #e9f0fc;
+
+  /* ── Màu nền & card ── */
+  --color-bg:   #eef2f7;
+  --color-card: #fff;
+
+  /* ── Màu chữ ── */
+  --color-text:  #14213d;
+  --color-muted: #5d6b82;
+
+  /* ── Viền & đường kẻ ── */
+  --color-border: #d3dbe7;
+  --color-line:   #e7ecf3;
+
+  /* ── Trạng thái ── */
+  --color-error:        #c62828;
+  --color-error-bg:     #fdf0f0;
+  --color-success-bg:   #ebf7ef;
+  --color-warning-bg:   #fff7e6;
+  --color-warning:      #f0b429;
+
+  /* ── Hình học ── */
+  --radius:  14px;
+  --shadow:  0 10px 30px rgba(11, 58, 117, 0.10),
+             0 2px  6px  rgba(11, 58, 117, 0.06);
+}

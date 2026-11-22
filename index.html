@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hồ sơ thiết bị các đơn vị</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#0b3a75">
+
+  <!--
+    ═══════════════════════════════════════════════
+    STYLESHEET – tách thành 5 file theo trách nhiệm:
+      variables.css       → Design tokens (màu, bóng…)
+      base.css            → Reset & typography
+      layout.css          → Header, card, wrapper, footer
+      form.css            → Input, label, nút, thông báo
+      combobox.css        → Combobox tìm trường
+      document-viewer.css → Trình xem tài liệu Drive
+    ═══════════════════════════════════════════════
+  -->
+  <link rel="stylesheet" href="src/css/variables.css">
+  <link rel="stylesheet" href="src/css/base.css">
+  <link rel="stylesheet" href="src/css/layout.css">
+  <link rel="stylesheet" href="src/css/form.css">
+  <link rel="stylesheet" href="src/css/combobox.css">
+  <link rel="stylesheet" href="src/css/document-viewer.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HEADER BANNER
+     ══════════════════════════════════════ -->
+<header class="band">
+  <div class="band-in">
+    <div class="org">
+      <span class="seal">
+        <!-- Logo SGM (inline SVG để không cần HTTP request thêm) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="SGM">
+          <defs><clipPath id="sgmc"><circle cx="50" cy="50" r="45"/></clipPath></defs>
+          <circle cx="50" cy="50" r="48" fill="#fff"/>
+          <g clip-path="url(#sgmc)">
+            <path d="M0 60 L14 44 L24 36 L34 42 L50 20 L62 32 L74 28 L90 42 L100 50 L100 70 L0 70Z" fill="#5fbf4f"/>
+            <path d="M30 58 L50 20 L72 58Z" fill="#2f9a45"/>
+            <path d="M50 20 L58 31 L50 42 L42 31Z" fill="#1d6f33"/>
+            <path d="M50 20 L42 31 L36 46 L44 40Z" fill="#7fd06c" opacity=".7"/>
+            <path d="M0 57 C22 50 40 66 62 60 C76 56 88 52 100 56 L100 66 C86 62 74 68 60 70 C38 74 22 60 0 66Z" fill="#fff"/>
+            <path d="M0 60.5 C22 54 40 69 62 63.5 C76 59.5 88 56 100 59.5" fill="none" stroke="#a9a9a9" stroke-width="1.4"/>
+            <path d="M0 64 C22 58 38 72 60 70 C74 68 86 62 100 64 L100 100 L0 100Z" fill="#d7262e"/>
+          </g>
+          <text x="50" y="87" text-anchor="middle" font-family="Arial,Helvetica,sans-serif"
+                font-weight="900" font-size="19" fill="#fff" letter-spacing=".5">SGM</text>
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#8f8f8f" stroke-width="2"/>
+        </svg>
+      </span>
+      <span class="org-t">Công ty TNHH Thương mại Dịch vụ<b>và Tư vấn Sài Gòn Mới</b></span>
+    </div>
+    <h1 id="title">Hồ sơ thiết bị các đơn vị</h1>
+    <p class="sub" id="subtitle">
+      Điền thông tin bên dưới để mở thư mục biên bản danh mục thiết bị, hợp đồng và tài liệu của đơn vị.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ══════════════════════════════════════
+       FORM XÁC THỰC ĐƠN VỊ
+       ══════════════════════════════════════ -->
+  <form id="form" class="card" novalidate autocomplete="off">
+    <div class="card-h">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>Xác thực đơn vị</h2>
+        <p>Dành cho cán bộ có tên trong danh sách của Sở</p>
+      </div>
+    </div>
+
+    <!-- Banner thông báo (error / warn) -->
+    <div id="banner" hidden></div>
+
+    <!-- Họ và tên -->
+    <label for="fullName">Họ và tên <span class="req">*</span></label>
+    <div class="field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <input type="text" id="fullName" maxlength="60"
+             autocomplete="name" placeholder="Nguyễn Văn A">
+    </div>
+    <div class="err" id="e_fullName"></div>
+
+    <!-- Số điện thoại -->
+    <label for="phone">Số điện thoại <span class="req">*</span></label>
+    <div class="field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1
+                 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1
+                 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5
+                 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3
+                 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>
+      </svg>
+      <input type="tel" id="phone" maxlength="15" inputmode="tel"
+             autocomplete="tel" placeholder="Số đã đăng ký, ví dụ 0912345678">
+    </div>
+    <div class="err" id="e_phone"></div>
+
+    <!-- Combobox chọn trường -->
+    <label id="schoolLabel">Tên trường / đơn vị <span class="req">*</span></label>
+    <div class="combo" id="combo">
+      <button type="button" class="combo-btn" id="comboBtn"
+              aria-haspopup="listbox" aria-labelledby="schoolLabel">
+        <span id="comboText"><span class="ph">Bấm để chọn hoặc tìm trường…</span></span>
+        <span class="caret">▼</span>
+      </button>
+      <div class="panel" id="panel">
+        <div class="ph-head">
+          <input type="text" id="q" placeholder="Gõ tên trường (không cần dấu)…"
+                 autocomplete="off" autocapitalize="off" spellcheck="false">
+          <button type="button" class="ph-close" id="panelClose">Đóng</button>
+        </div>
+        <div class="ph-count" id="count"></div>
+        <div class="list" id="list" role="listbox"></div>
+      </div>
+    </div>
+    <div class="err" id="e_schoolCode"></div>
+
+    <!-- Honeypot: người dùng thật không thấy ô này -->
+    <div class="hp" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <!-- Nút gửi -->
+    <button type="submit" class="btn" id="submitBtn">Gửi và mở thư mục</button>
+
+    <div class="secure">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Hồ sơ chỉ hiển thị cho đúng đơn vị của bạn
+    </div>
+    <p class="priv" id="privacy"></p>
+  </form>
+
+  <!-- ══════════════════════════════════════
+       KẾT QUẢ / TRÌNH XEM TÀI LIỆU
+       (nội dung được render bởi document-viewer.js)
+       ══════════════════════════════════════ -->
+  <section id="result" class="card res" hidden></section>
+
+  <footer>
+    Sở Giáo dục và Đào tạo tỉnh Lâm Đồng<br>
+    Cần hỗ trợ, vui lòng liên hệ Ban tổ chức tại sự kiện
+  </footer>
+</div>
+
+<!--
+  ═══════════════════════════════════════════════
+  JAVASCRIPT – ES Modules (type="module")
+    src/js/app.js          → Entry point, điều phối luồng
+    src/js/modules/
+      api.js               → Giao tiếp với Apps Script Web App
+      combobox.js          → Combobox tìm kiếm trường
+      document-viewer.js   → Trình xem thư mục / file Drive
+      validation.js        → Quy tắc kiểm tra dữ liệu
+      utils.js             → Hàm tiện ích (fold, esc, highlight…)
+  ═══════════════════════════════════════════════
+  Lưu ý khi deploy lên Netlify / GitHub Pages:
+    Trình duyệt hiện đại (Chrome 61+, Firefox 60+, Safari 10.1+)
+    đều hỗ trợ ES Modules. Không cần bundler cho project quy mô nhỏ này.
+-->
+<script type="module" src="src/js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+/**
+ * combobox.css
+ * ─────────────────────────────────────────────
+ * Combobox chọn trường có tìm kiếm không dấu
+ * ─────────────────────────────────────────────
+ */
+
+/* ── Nút trigger ── */
+.combo { position: relative; }
+.combo-btn {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding-left: 44px;
+  position: relative;
+}
+
+/* Icon toà nhà (mask SVG) */
+.combo-btn::before {
+  content: "";
+  position: absolute;
+  left: 14px; top: 50%;
+  width: 18px; height: 18px;
+  transform: translateY(-50%);
+  background: #8a97ad;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.combo-btn .ph  { color: #9aa6b8; }
+.combo-btn .val { display: block; font-weight: 600; }
+.combo-btn .cl  { font-size: .78rem; color: var(--color-muted); display: block; }
+.caret          { flex: none; color: #8a97ad; font-size: .75rem; }
+
+/* ── Panel danh sách ── */
+.panel {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: #fff;
+  flex-direction: column;
+}
+.panel.open { display: flex; }
+
+.ph-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--color-line);
+  background: #fff;
+}
+.ph-head input { flex: 1; }
+
+.ph-close {
+  flex: none;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: .95rem;
+  font-family: inherit;
+}
+.ph-count {
+  padding: 8px 16px;
+  font-size: .8rem;
+  color: var(--color-muted);
+  background: #f7f9fc;
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* ── Danh sách kết quả ── */
+.list { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.grp {
+  position: sticky; top: 0;
+  background: #f1f5fb;
+  color: var(--color-navy);
+  font-weight: 700;
+  padding: 8px 16px;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border: 0;
+  border-bottom: 1px solid #f0f3f8;
+  background: #fff;
+  font-size: .95rem;
+  font-family: inherit;
+  color: var(--color-text);
+  min-height: 52px;
+  cursor: pointer;
+}
+.opt:hover, .opt:active, .opt.act { background: var(--color-primary-light); }
+.opt .cd {
+  flex: none;
+  min-width: 30px;
+  text-align: center;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 3px 0;
+}
+.opt mark { background: #ffe9a8; color: inherit; border-radius: 3px; }
+.empty { padding: 28px 16px; color: var(--color-muted); text-align: center; }
+
+/* ── Desktop: hiện panel ngay dưới button ── */
+@media (min-width: 700px) {
+  .panel {
+    position: absolute;
+    top: 100%; left: 0; right: 0; bottom: auto;
+    margin-top: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(11, 58, 117, 0.18);
+    max-height: 420px;
+    overflow: hidden;
+  }
+  .ph-close { display: none; }
+}

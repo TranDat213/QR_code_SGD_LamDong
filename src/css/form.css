@@ -1,0 +1,126 @@
+/**
+ * form.css
+ * ─────────────────────────────────────────────
+ * Input, label, nút, thông báo lỗi, combobox
+ * ─────────────────────────────────────────────
+ */
+
+/* ── Label ── */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: .88rem;
+  margin: 16px 0 6px;
+  color: #24324d;
+}
+.req { color: var(--color-error); }
+
+/* ── Input có icon ── */
+.field { position: relative; }
+.field svg {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 18px; height: 18px;
+  color: #8a97ad;
+  pointer-events: none;
+}
+input[type="text"],
+input[type="tel"],
+.combo-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  background: #fbfcfe;
+  color: var(--color-text);
+  font-family: inherit;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.field input { padding-left: 44px; }
+input::placeholder { color: #9aa6b8; }
+input:focus,
+.combo-btn:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(21, 87, 192, 0.14);
+}
+.invalid {
+  border-color: var(--color-error) !important;
+  background: #fffafa !important;
+}
+
+/* ── Thông báo lỗi inline ── */
+.err {
+  color: var(--color-error);
+  font-size: .82rem;
+  margin: 6px 2px 0;
+  min-height: 0;
+}
+.err:empty { display: none; }
+
+/* ── Thông báo banner (error / warn / ok) ── */
+.msg {
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  font-size: .9rem;
+}
+.msg.error { background: var(--color-error-bg);   border: 1px solid #f3c4c4; color: #8a1c1c; }
+.msg.warn  { background: var(--color-warning-bg);  border: 1px solid #f6d58a; color: #5c4300; }
+.msg.ok    { background: var(--color-success-bg);  border: 1px solid #b5e0c2; color: #1b5e20; }
+.msg h2 { margin: 0 0 6px; font-size: 1.05rem; }
+
+/* ── Nút ── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 24px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1557c0, #0e4499);
+  color: #fff;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px;
+  box-shadow: 0 6px 16px rgba(21, 87, 192, 0.28);
+  transition: transform .1s, box-shadow .15s;
+}
+.btn:active      { transform: translateY(1px); box-shadow: 0 3px 8px rgba(21, 87, 192, 0.25); }
+.btn[disabled]   { opacity: .7; cursor: wait; }
+.btn.sec         { background: #fff; color: var(--color-primary); border: 1.5px solid var(--color-border); box-shadow: none; margin-top: 18px; }
+
+/* ── Bảo mật & Quyền riêng tư ── */
+.secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: .78rem;
+  color: var(--color-muted);
+}
+.secure svg { width: 14px; height: 14px; }
+.priv {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f6f8fb;
+  font-size: .76rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+.priv:empty { display: none; }
